@@ -310,7 +310,7 @@ return (
           </div>
           <div className="card__content">
             <a href="" target="_blank">
-              <h3 className="card-line-through">Название задачи</h3>
+              <h3 className="card__title___line-through">Название задачи</h3>
             </a>
             <div className="card__date">
               <svg

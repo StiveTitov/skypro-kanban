@@ -886,6 +886,14 @@ body {
   color: #000000;
   margin-bottom: 10px;
 }
+.card__title___line-through {
+  text-decoration: line-through;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #000000;
+  margin-bottom: 10px;
+}
 .card__content {
   height: 64px;
   display: flex;
@@ -907,16 +915,6 @@ body {
   line-height: 13px;
   color: #94A6BE;
   letter-spacing: 0.2px;
-}
-
-.card-line-through {
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 18px;
-	color: #000000;
-	margin-bottom: 10px;
-	text-decoration: line-through;
-	
 }
 
 @media screen and (max-width: 1200px) {
@@ -1096,4 +1094,4 @@ body {
   .pop-exit__form-group {
     display: block;
   }
-}
+}/*# sourceMappingURL=main.css.map */
