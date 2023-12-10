@@ -909,15 +909,7 @@ body {
   letter-spacing: 0.2px;
 }
 
-.card-line-through {
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 18px;
-	color: #000000;
-	margin-bottom: 10px;
-	text-decoration: line-through;
-	
-}
+
 
 @media screen and (max-width: 1200px) {
   .main__block {
