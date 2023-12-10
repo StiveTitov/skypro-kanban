@@ -13,6 +13,7 @@ export default function Column({title}){
                       <CardsItem
                         key={task.id}
                         theme={task.theme}
+                        color={task.color}
                         title={task.title}
                         date={task.date}
                       />
