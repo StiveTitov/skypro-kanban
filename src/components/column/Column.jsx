@@ -1,4 +1,4 @@
-import { tasks } from "../../App"
+import { tasks } from "../constants/Constants"
 import CardsItem from "../cards/CardsItem"
 
 export default function Column({title}){
