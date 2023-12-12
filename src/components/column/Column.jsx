@@ -1,6 +1,13 @@
 import { tasks } from "../../data"
 import CardsItem from "../cards/CardsItem"
 
+const statusList = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
 export default function Column({title}){
     return(
         <div className="main__column column">
@@ -22,5 +29,6 @@ export default function Column({title}){
                 
               </div>
             </div>
+            
     )
 }
