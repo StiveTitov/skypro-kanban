@@ -1,8 +1,7 @@
+import { statusList } from "../../data"; //получаем название колонок из файла
 import Column from "../column/Column";
-import { statusList } from "../../data";
 
 export default function Main({ cards }) {
-  
   return (
     <main className="main">
       <div className="container">

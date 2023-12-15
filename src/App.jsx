@@ -16,6 +16,15 @@ function App() {
 
   function addCard() {
     // Логика добавления карточки
+    const newCard = {
+      id: cardList.length + 1,
+      theme: "Research",
+      color: "green",
+      title: "Название задачи",
+      date: "30.10.23",
+      status: "Без статуса"
+    };
+    setCards(...cardList, newCard);
   }
 
   return (
