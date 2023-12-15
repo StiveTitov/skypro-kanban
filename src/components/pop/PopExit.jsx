@@ -1,6 +1,6 @@
-
 export default function PopExit() {
-    return (<div className="pop-exit" id="popExit">
+  return (
+    <div className="pop-exit" id="popExit">
       <div className="pop-exit__container">
         <div className="pop-exit__block">
           <div className="pop-exit__ttl">
@@ -19,5 +19,5 @@ export default function PopExit() {
         </div>
       </div>
     </div>
-    );
+  );
 }
