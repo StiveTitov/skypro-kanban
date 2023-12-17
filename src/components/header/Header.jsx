@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 export default function Header({ addCard }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+    console.log("Click!");
+  };
   return (
     <header className="header">
       <div className="container">
@@ -19,14 +26,16 @@ export default function Header({ addCard }) {
                 Создать новую задачу
               </a>
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+            <a onClick={toggleDropdown} className="header__user _hover02">
               Ivan Ivanov
             </a>
-            <div
-              className="header__pop-user-set pop-user-set"
-              id="user-set-target"
-            >
-              {/* <a href="">x</a> */}
+            {isOpen && (
+              <div
+              className="divtest" // при оригинальном className="header__pop-user-set pop-user-set"
+              id="user-set-target" // не появляется модальное окно, но стоит изменить название класса на другое
+            // например  className="divtest" всё работает, модальное окно появляется, 
+            //классы полностью одинаковые, разные названия.
+            > 
               <p className="pop-user-set__name">Ivan Ivanov</p>
               <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
               <div className="pop-user-set__theme">
@@ -37,6 +46,7 @@ export default function Header({ addCard }) {
                 <a href="#popExit">Выйти</a>
               </button>
             </div>
+            )}
           </nav>
         </div>
       </div>

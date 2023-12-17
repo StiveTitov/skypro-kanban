@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { cardList } from "./data";
 
@@ -14,6 +14,14 @@ import Main from "./components/main/Main";
 function App() {
   const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
   // это нужно для работы хука
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 секунды задержки
+  }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+
   function addCard() {
     // Логика добавления карточки
     const newCard = {
@@ -24,7 +32,7 @@ function App() {
       date: "30.10.23",
       status: "Без статуса",
     };
-    setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку
+    setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку, обязательно с помощью spread
   }
 
   return (
@@ -37,8 +45,10 @@ function App() {
         <PopBrowse />
 
         <Header addCard={addCard} />
-
-        <Main cards={cards} />
+        {isLoading
+        ?(<div className="loading">  Данные загружаются...</div>)
+      :(<Main cards={cards} />)}
+        
       </Wrapper>
     </>
   );
