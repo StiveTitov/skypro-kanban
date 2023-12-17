@@ -12,19 +12,19 @@ import Header from "./components/header/Header.jsx";
 import Main from "./components/main/Main";
 
 function App() {
-  const [cards, setCards] = useState(cardList);
-
+  const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
+  // это нужно для работы хука
   function addCard() {
     // Логика добавления карточки
     const newCard = {
-      id: cardList.length + 1,
+      id: cards.length + 1, // id новой карточки получается прибавлением единицы к длине массива
       theme: "Research",
       color: "green",
       title: "Название задачи",
       date: "30.10.23",
-      status: "Без статуса"
+      status: "Без статуса",
     };
-    setCards(...cardList, newCard);
+    setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку
   }
 
   return (

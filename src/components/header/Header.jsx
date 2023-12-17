@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ addCard }) {
   return (
     <header className="header">
       <div className="container">
@@ -15,7 +15,9 @@ export default function Header() {
           </div>
           <nav className="header__nav">
             <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a /*href="#popNewCard"*/>Создать новую задачу</a>
+              <a onClick={addCard} /*href="#popNewCard"*/>
+                Создать новую задачу
+              </a>
             </button>
             <a href="#user-set-target" className="header__user _hover02">
               Ivan Ivanov

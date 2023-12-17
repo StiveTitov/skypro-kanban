@@ -11,8 +11,8 @@ export default function Main({ cards }) {
               <Column
                 key={status}
                 title={status}
-                cardList={cards.filter((card) => card.status === status)}
-              />
+                cardList={cards.filter((card) => card.status === status)} //фильтруем данные, чтобы карточка
+              /> //соответствовала своей колонке
             ))}
           </div>
         </div>
