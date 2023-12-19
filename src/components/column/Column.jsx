@@ -1,26 +1,23 @@
-import { tasks } from "../constants/Constants"
-import CardsItem from "../cards/CardsItem"
+import CardsItem from "../cards/CardsItem";
 
-export default function Column({title}){
-    return(
-        <div className="main__column column">
-              <div className="column__title">
-                <p>{title}</p>
-              </div>
-              <div className="cards">
-                
-                    {tasks.map((task)=>(
-                      <CardsItem
-                        key={task.id}
-                        theme={task.theme}
-                        color={task.color}
-                        title={task.title}
-                        date={task.date}
-                      />
-                    ))}
-
-                
-              </div>
-            </div>
-    )
+export default function Column({ title, cardList }) {
+  
+  return (
+    <div className="main__column column">
+      <div className="column__title">
+        <p>{title}</p>
+      </div>
+      <div className="cards">
+        {cardList.map((cardList) => (
+          <CardsItem
+            key={cardList.id}
+            theme={cardList.theme}
+            color={cardList.color}
+            title={cardList.title}
+            date={cardList.date}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
