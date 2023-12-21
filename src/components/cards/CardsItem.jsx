@@ -1,11 +1,28 @@
-export default function CardsItem({ theme, title, color, date }) {
+import { CardTheme, ThemeP, CardItem, CardGroup } from "../common/Cards.styled";
+
+export default function CardsItem({ theme, title, date }) {
+  let color;
+  switch (theme) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
   return (
-    <div className="cards__item">
+    <CardItem>
       <div className="cards__card card">
-        <div className="card__group">
-          <div className={`card__theme _${color}`}>
-            <p className={`_${color}`}>{theme}</p>
-          </div>
+        <CardGroup>
+          <CardTheme $themeColor={color}>
+            <ThemeP>{theme}</ThemeP>
+          </CardTheme>
+
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
               <div />
@@ -13,7 +30,7 @@ export default function CardsItem({ theme, title, color, date }) {
               <div />
             </div>
           </a>
-        </div>
+        </CardGroup>
         <div className="card__content">
           <a href="" target="_blank">
             <h3 className="card__title">{title}</h3>
@@ -51,6 +68,6 @@ export default function CardsItem({ theme, title, color, date }) {
           </div>
         </div>
       </div>
-    </div>
+    </CardItem>
   );
 }

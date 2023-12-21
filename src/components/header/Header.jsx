@@ -31,10 +31,8 @@ export default function Header({ addCard }) {
             </a>
             {isOpen && (
               <div
-              className="divtest" // при оригинальном className="header__pop-user-set pop-user-set"
-              id="user-set-target" // не появляется модальное окно, но стоит изменить название класса на другое
-            // например  className="divtest" всё работает, модальное окно появляется, 
-            //классы полностью одинаковые, разные названия классов.
+              className="header__pop-user-set pop-user-set"
+              id="user-set-target" 
             > 
               <p className="pop-user-set__name">Ivan Ivanov</p>
               <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
