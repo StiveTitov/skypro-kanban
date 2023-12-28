@@ -756,12 +756,12 @@ body {
 ._dark {
   display: none;
 }
-
+/*
 .header {
   width: 100%;
   margin: 0 auto;
   background-color: #FFFFFF;
-}
+}*/
 .header__block {
   height: 70px;
   display: flex;
@@ -879,7 +879,7 @@ body {
   animation-duration: 500ms;
   animation-timing-function: linear;
 }*/
-/*
+
 .cards__card {
   width: 220px;
   height: 130px;
@@ -890,7 +890,7 @@ body {
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
-}*/
+}
 /*
 .card__group {
   width: 100%;

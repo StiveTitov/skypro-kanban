@@ -11,7 +11,7 @@ import Header from "./components/header/Header.jsx";
 
 import Main from "./components/main/Main";
 
-//import {  GlobalStyle, ThemeProvider, lightTheme, darkTheme} from "./components/Global/Global.styled.js";
+import { GlobalStyle } from "./components/common/Common.styled";
 
 //import { Button, DangerButton } from "./components/Button/Button.styled.js"; // Импортируем
 
@@ -53,19 +53,22 @@ function App() {
 
   return (
     <>
+    <GlobalStyle />
       <Wrapper>
-        <PopExit />
+        
+          <PopExit />
 
-        <PopNewCard />
+          <PopNewCard />
 
-        <PopBrowse />
+          <PopBrowse />
 
-        <Header addCard={addCard} />
-        {isLoading ? (
-          <div className="loading"> Данные загружаются...</div>
-        ) : (
-          <Main cards={cards} />
-        )}
+          <Header addCard={addCard} />
+          {isLoading ? (
+            <div className="loading"> Данные загружаются...</div>
+          ) : (
+            <Main cards={cards} />
+          )}
+        
       </Wrapper>
     </>
   );

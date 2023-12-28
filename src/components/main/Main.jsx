@@ -1,4 +1,5 @@
-import { MainStyled, Container, MainBlock, MainContent } from "../common/Main.styled";
+import { Container } from "../common/Common.styled";
+import { MainStyled, MainBlock, MainContent } from "./Main.styled";
 import { statusList } from "../../data"; //получаем название колонок из файла
 import Column from "../column/Column";
 
