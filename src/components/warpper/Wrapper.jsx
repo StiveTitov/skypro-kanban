@@ -1,3 +1,5 @@
+import {WrapperDiv} from "./Wrapper.styled"
+
 export default function Wrapper({ children }) {
-  return <div className="wrapper">{children}</div>;
+  return <WrapperDiv>{children}</WrapperDiv>;
 }

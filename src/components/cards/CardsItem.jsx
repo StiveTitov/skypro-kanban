@@ -1,24 +1,54 @@
-export default function CardsItem({ theme, title, color, date }) {
+import {
+  CardTheme,
+  ThemeP,
+  CardItem,
+  CardA,
+  CardsCard,
+  CardGroup,
+  CardBtn,
+  CardBtnDiv,
+  CardContent,
+  CardDate,
+  CardTitle,
+  CardP,
+} from "./Cards.styled";
+
+export default function CardsItem({ theme, title, date }) {
+  let color;
+  switch (theme) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className={`card__theme _${color}`}>
-            <p className={`_${color}`}>{theme}</p>
-          </div>
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div />
-              <div />
-              <div />
-            </div>
-          </a>
-        </div>
-        <div className="card__content">
-          <a href="" target="_blank">
-            <h3 className="card__title">{title}</h3>
-          </a>
-          <div className="card__date">
+    <CardItem>
+      <CardsCard>
+        <CardGroup>
+          <CardTheme $themeColor={color}>
+            <ThemeP>{theme}</ThemeP>
+          </CardTheme>
+
+          <CardA>
+            <CardBtn>
+              <CardBtnDiv />
+              <CardBtnDiv />
+              <CardBtnDiv />
+            </CardBtn>
+          </CardA>
+        </CardGroup>
+        <CardContent>
+          <CardA>
+            <CardTitle>{title}</CardTitle>
+          </CardA>
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={13}
@@ -47,10 +77,10 @@ export default function CardsItem({ theme, title, color, date }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <CardP>{date}</CardP>
+          </CardDate>
+        </CardContent>
+      </CardsCard>
+    </CardItem>
   );
 }

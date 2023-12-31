@@ -1,4 +1,16 @@
 import { useState } from "react";
+import { Container } from "../../components/common/Common.styled";
+import {
+  StyledHeader,
+  HeaderA,
+  HeaderBlock,
+  HeaderLogoShowLight,
+  HeaderLogoDark,
+  HeaderNav,
+  HeaderBtnMainNew,
+  HeaderBtnMainNewA,
+  HeaderUser,
+} from "./Header.styled";
 
 export default function Header({ addCard }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,49 +19,45 @@ export default function Header({ addCard }) {
     console.log("Click!");
   };
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
-            <a href="" target="_self">
+    <StyledHeader>
+      <Container>
+        <HeaderBlock>
+          <HeaderLogoShowLight>
+            <HeaderA>
               <img src="/images/logo.png" alt="logo" />
-            </a>
-          </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
+            </HeaderA>
+          </HeaderLogoShowLight>
+          <HeaderLogoDark>
+            <HeaderA>
               <img src="/images/logo_dark.png" alt="logo" />
-            </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a onClick={addCard} /*href="#popNewCard"*/>
+            </HeaderA>
+          </HeaderLogoDark>
+          <HeaderNav>
+            <HeaderBtnMainNew>
+              <HeaderBtnMainNewA onClick={addCard}>
                 Создать новую задачу
-              </a>
-            </button>
-            <a onClick={toggleDropdown} className="header__user _hover02">
-              Ivan Ivanov
-            </a>
+              </HeaderBtnMainNewA>
+            </HeaderBtnMainNew>
+            <HeaderUser onClick={toggleDropdown}>Ivan Ivanov</HeaderUser>
             {isOpen && (
               <div
-              className="divtest" // при оригинальном className="header__pop-user-set pop-user-set"
-              id="user-set-target" // не появляется модальное окно, но стоит изменить название класса на другое
-            // например  className="divtest" всё работает, модальное окно появляется, 
-            //классы полностью одинаковые, разные названия классов.
-            > 
-              <p className="pop-user-set__name">Ivan Ivanov</p>
-              <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-              <div className="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" className="checkbox" name="checkbox" />
+                className="header__pop-user-set pop-user-set"
+                id="user-set-target"
+              >
+                <p className="pop-user-set__name">Ivan Ivanov</p>
+                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+                <div className="pop-user-set__theme">
+                  <p>Темная тема</p>
+                  <input type="checkbox" className="checkbox" name="checkbox" />
+                </div>
+                <button type="button" className="_hover03">
+                  <a href="#popExit">Выйти</a>
+                </button>
               </div>
-              <button type="button" className="_hover03">
-                <a href="#popExit">Выйти</a>
-              </button>
-            </div>
             )}
-          </nav>
-        </div>
-      </div>
-    </header>
+          </HeaderNav>
+        </HeaderBlock>
+      </Container>
+    </StyledHeader>
   );
 }

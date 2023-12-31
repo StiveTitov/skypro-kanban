@@ -11,9 +11,16 @@ import Header from "./components/header/Header.jsx";
 
 import Main from "./components/main/Main";
 
+import { GlobalStyle } from "./components/common/Common.styled";
+
+//import { Button, DangerButton } from "./components/Button/Button.styled.js"; // Импортируем
+
 function App() {
   const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
   // это нужно для работы хука
+
+  const [theme, setTheme] = useState("light"); // Состояние для переключения тем
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +28,15 @@ function App() {
       setIsLoading(false);
     }, 2000); // 2 секунды задержки
   }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+
+  // Функция для переключения темы
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
 
   function addCard() {
     // Логика добавления карточки
@@ -37,17 +53,21 @@ function App() {
 
   return (
     <>
+    <GlobalStyle />
       <Wrapper>
-        <PopExit />
+        
+          <PopExit />
 
-        <PopNewCard />
+          <PopNewCard />
 
-        <PopBrowse />
+          <PopBrowse />
 
-        <Header addCard={addCard} />
-        {isLoading
-        ?(<div className="loading">  Данные загружаются...</div>)
-      :(<Main cards={cards} />)}
+          <Header addCard={addCard} />
+          {isLoading ? (
+            <div className="loading"> Данные загружаются...</div>
+          ) : (
+            <Main cards={cards} />
+          )}
         
       </Wrapper>
     </>
