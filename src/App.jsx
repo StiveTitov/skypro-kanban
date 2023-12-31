@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+
+// Определение маршрутов
+import { Routes,Route } from "react-router-dom";
+//
+
 import "./App.css";
 import { cardList } from "./data";
 
@@ -14,6 +19,8 @@ import Main from "./components/main/Main";
 import { GlobalStyle } from "./components/common/Common.styled";
 
 //import { Button, DangerButton } from "./components/Button/Button.styled.js"; // Импортируем
+
+
 
 function App() {
   const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
