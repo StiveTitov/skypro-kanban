@@ -1,3 +1,4 @@
+import React from "react";
 import {
   PopExitDiv,
   PopExitContainer,
@@ -11,7 +12,7 @@ import {
   PopExitExitButtonNoA,
 } from "./PopExit.styled";
 
-export default function PopExit() {
+export default function ExitPage() {
   return (
     <PopExitDiv>
       <PopExitContainer>

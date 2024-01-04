@@ -1,4 +1,4 @@
-export default function PopNewCard() {
+export default function CardPage() {
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -6,7 +6,7 @@ export default function PopNewCard() {
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
             <a href="#" className="pop-new-card__close">
-              ✖
+              
             </a>
             <div className="pop-new-card__wrap">
               <form

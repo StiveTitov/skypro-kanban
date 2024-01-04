@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { hover01 } from "../common/Common.styled";
+import { hover01 } from "../../components/common/Common.styled";
 import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExitDiv = styled.div`
