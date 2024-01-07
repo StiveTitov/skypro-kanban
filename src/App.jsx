@@ -6,6 +6,7 @@ import { AppRoutes } from "./lib/AppRoutes.js";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import MainPage from "./pages/MainPage/MainPage.jsx";
 import CardPage from "./pages/CardPage/CardPage.jsx";
+import NewCard from "./pages/CardPage/NewCard.jsx";
 import ExitPage from "./pages/ExitPage/ExitPage.jsx";
 import SignIn from "./pages/SignInPage/SignInPage.jsx";
 import SignUp from "./pages/SignUpPage/SignUpPage.jsx";
@@ -19,6 +20,7 @@ function App() {
   function exitAuth() {
     SetIsAuth(false);
   }
+  return (
   <Routes>
     <Route element={<PrivateRoute isAuth={isAuth} />}>
       <Route path={AppRoutes.HOME} element={<MainPage />} />
@@ -26,9 +28,12 @@ function App() {
       <Route path={AppRoutes.EXIT} element={<ExitPage exitAuth={exitAuth} />} />
     </Route>
 
+    <Route path="new-card" element={<NewCard />} />
     <Route path={AppRoutes.SIGNIN} element={<SignIn />} />
     <Route path={AppRoutes.SIGNUP} element={<SignUp />} />
     <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
-  </Routes>;
+  </Routes>
+  );
+  
 }
 export default App;

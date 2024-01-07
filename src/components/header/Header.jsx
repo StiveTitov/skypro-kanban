@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -39,9 +38,11 @@ export default function Header({ addCard }) {
           </HeaderLogoDark>
           <HeaderNav>
             <HeaderBtnMainNew>
-              <HeaderBtnMainNewA onClick={addCard}>
+              <Link to="new-card">
+              <HeaderBtnMainNewA>
                 Создать новую задачу
               </HeaderBtnMainNewA>
+              </Link>
             </HeaderBtnMainNew>
             <HeaderUser onClick={toggleDropdown}>Ivan Ivanov</HeaderUser>
             {isOpen && (

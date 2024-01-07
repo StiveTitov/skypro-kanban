@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
@@ -41,7 +40,7 @@ export default function SingUp() {
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
               >
-                <a href="../main.html">Зарегистрироваться</a>{" "}
+                <Link to={AppRoutes.HOME}>Зарегистрироваться</Link>
               </button>
               <div className="modal__form-group">
                 <p>

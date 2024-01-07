@@ -1,4 +1,7 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/AppRoutes";
+
+
 import {
   PopExitDiv,
   PopExitContainer,
@@ -21,10 +24,10 @@ export default function ExitPage() {
           <PopExitForm>
             <PopExitFormGroup>
               <PopExitExitButtonYes>
-                <PopExitExitButtonYesA>Да, выйти</PopExitExitButtonYesA>{" "}
+                <PopExitExitButtonYesA><Link to={AppRoutes.SIGNIN}>Да, выйти</Link></PopExitExitButtonYesA>
               </PopExitExitButtonYes>
               <PopExitExitButtonNo>
-                <PopExitExitButtonNoA>Нет, остаться</PopExitExitButtonNoA>{" "}
+                <PopExitExitButtonNoA><Link to={AppRoutes.HOME}>Нет, остаться</Link></PopExitExitButtonNoA>
               </PopExitExitButtonNo>
             </PopExitFormGroup>
           </PopExitForm>

@@ -1,5 +1,6 @@
-import React from "react";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+
+import { Outlet } from "react-router-dom";
 
 import "../../../src/App.css";
 import { cardList } from "../../data";
@@ -14,6 +15,7 @@ import Header from "../../components/header/Header";
 import Main from "../../components/main/Main";
 
 import { GlobalStyle } from "../../components/common/Common.styled";
+
 
 function MainPage() {
   const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
@@ -31,11 +33,11 @@ function MainPage() {
 
   // Функция для переключения темы
   //const toggleTheme = () => {
-    //if (theme === "light") {
-      //setTheme("dark");
-    //} else {
-    //  setTheme("light");
-    //}
+  //if (theme === "light") {
+  //setTheme("dark");
+  //} else {
+  //  setTheme("light");
+  //}
   //};
 
   function addCard() {
@@ -55,16 +57,14 @@ function MainPage() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <PopNewCard />
-
-        <PopBrowse />
-
-        <Header addCard={addCard} />
-        {isLoading ? (
-          <div className="loading"> Данные загружаются...</div>
-        ) : (
-          <Main cards={cards} />
-        )}
+      
+          <Header addCard={addCard} />
+          {isLoading ? (
+            <div className="loading"> Данные загружаются...</div>
+          ) : (
+            <Main cards={cards} />
+          )}
+        <Outlet />
       </Wrapper>
     </>
   );

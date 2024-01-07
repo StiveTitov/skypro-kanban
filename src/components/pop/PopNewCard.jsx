@@ -1,53 +1,43 @@
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
-export default function PopBrowse() {
-  return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
+export default function PopNewCard () {
+    return (
+        <div className="pop-new-card" id="popNewCard">
+      <div className="pop-new-card__container">
+        <div className="pop-new-card__block">
+          <div className="pop-new-card__content">
+            <h3 className="pop-new-card__ttl">Создание задачи</h3>
+            <a href="#" className="pop-new-card__close">
+              
+            </a>
+            <div className="pop-new-card__wrap">
               <form
-                className="pop-browse__form form-browse"
-                id="formBrowseCard"
+                className="pop-new-card__form form-new"
+                id="formNewCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <div className="form-new__block">
+                  <label htmlFor="formTitle" className="subttl">
+                    Название задачи
+                  </label>
+                  <input
+                    className="form-new__input"
+                    type="text"
+                    name="name"
+                    id="formTitle"
+                    placeholder="Введите название задачи..."
+                    autoFocus=""
+                  />
+                </div>
+                <div className="form-new__block">
+                  <label htmlFor="textArea" className="subttl">
                     Описание задачи
                   </label>
                   <textarea
-                    className="form-browse__area"
+                    className="form-new__area"
                     name="text"
-                    id="textArea01"
-                    readOnly=""
+                    id="textArea"
                     placeholder="Введите описание задачи..."
                     defaultValue={""}
                   />
@@ -104,9 +94,7 @@ export default function PopBrowse() {
                       <div className="calendar__cell _cell-day ">6</div>
                       <div className="calendar__cell _cell-day">7</div>
                       <div className="calendar__cell _cell-day _current">8</div>
-                      <div className="calendar__cell _cell-day _weekend _active-day">
-                        9
-                      </div>
+                      <div className="calendar__cell _cell-day _weekend">9</div>
                       <div className="calendar__cell _cell-day _weekend">
                         10
                       </div>
@@ -152,54 +140,35 @@ export default function PopBrowse() {
                   />
                   <div className="calendar__period">
                     <p className="calendar__p date-end">
-                      Срок исполнения:{" "}
-                      <span className="date-control">09.09.23</span>
+                      Выберите срок исполнения <span className="date-control" />
+                      .
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="theme-down__categories theme-down">
+            <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
+              <div className="categories__themes">
+                <div className="categories__theme _orange _active-category">
+                  <p className="_orange">Web Design</p>
+                </div>
+                <div className="categories__theme _green">
+                  <p className="_green">Research</p>
+                </div>
+                <div className="categories__theme _purple">
+                  <p className="_purple">Copywriting</p>
+                </div>
               </div>
             </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Редактировать задачу</Link>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-              <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                <Link to={AppRoutes.HOME}>Сохранить</Link>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Отменить</Link>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-              <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
+            <Link to={AppRoutes.HOME}>
+            <button className="form-new__create _hover01" id="btnCreate">
+             Создать задачу 
+            </button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
-  );
+    )
 }

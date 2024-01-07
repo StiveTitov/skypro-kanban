@@ -54,7 +54,7 @@ export const PopExitFormGroup = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   @media screen and (max-width: ${breakpoints.sm}px) {
     display: block;
   }
