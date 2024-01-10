@@ -85,7 +85,7 @@ export const PopExitExitButtonYes = styled.button`
   }
 `;
 
-export const PopExitExitButtonYesA = styled.a`
+export const PopExitExitButtonYesA = styled.p`
   width: 100%;
   height: 100%;
   color: #ffffff;
@@ -115,7 +115,7 @@ export const PopExitExitButtonNo = styled.div`
   }
 `;
 
-export const PopExitExitButtonNoA = styled.a`
+export const PopExitExitButtonNoA = styled.p`
   width: 100%;
   height: 100%;
   color: #565eef;
