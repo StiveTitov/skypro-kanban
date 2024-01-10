@@ -1,3 +1,6 @@
+ import { Link } from "react-router-dom";
+ import { AppRoutes } from "../../lib/AppRoutes";
+
 import {
   PopExitDiv,
   PopExitContainer,
@@ -7,24 +10,21 @@ import {
   PopExitFormGroup,
   PopExitExitButtonYes,
   PopExitExitButtonYesA,
-  PopExitExitButtonNo,
-  PopExitExitButtonNoA,
-} from "./PopExit.styled";
+  
+} from "./NoFoundPage.styled";
 
-export default function PopExit() {
+export default function NotFoundPage() {
   return (
     <PopExitDiv>
       <PopExitContainer>
         <PopExitBlock>
-          <PopExitTtlH2>Выйти из аккаунта?</PopExitTtlH2>
+          <PopExitTtlH2>Упс, страницы не существует</PopExitTtlH2>
           <PopExitForm>
             <PopExitFormGroup>
               <PopExitExitButtonYes>
-                <PopExitExitButtonYesA>Да, выйти</PopExitExitButtonYesA>{" "}
+                <Link to={AppRoutes.HOME}><PopExitExitButtonYesA>Ок</PopExitExitButtonYesA></Link>
               </PopExitExitButtonYes>
-              <PopExitExitButtonNo>
-                <PopExitExitButtonNoA>Нет, остаться</PopExitExitButtonNoA>{" "}
-              </PopExitExitButtonNo>
+              
             </PopExitFormGroup>
           </PopExitForm>
         </PopExitBlock>

@@ -1,4 +1,8 @@
 import { useState } from "react";
+
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/AppRoutes";
+
 import { Container } from "../../components/common/Common.styled";
 import {
   StyledHeader,
@@ -34,9 +38,11 @@ export default function Header({ addCard }) {
           </HeaderLogoDark>
           <HeaderNav>
             <HeaderBtnMainNew>
-              <HeaderBtnMainNewA onClick={addCard}>
+              <Link to="new-card">
+              <HeaderBtnMainNewA>
                 Создать новую задачу
               </HeaderBtnMainNewA>
+              </Link>
             </HeaderBtnMainNew>
             <HeaderUser onClick={toggleDropdown}>Ivan Ivanov</HeaderUser>
             {isOpen && (
@@ -51,7 +57,7 @@ export default function Header({ addCard }) {
                   <input type="checkbox" className="checkbox" name="checkbox" />
                 </div>
                 <button type="button" className="_hover03">
-                  <a href="#popExit">Выйти</a>
+                  <Link to={AppRoutes.EXIT}>Выйти</Link>
                 </button>
               </div>
             )}

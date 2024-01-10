@@ -1,12 +1,15 @@
-export default function PopNewCard() {
-  return (
-    <div className="pop-new-card" id="popNewCard">
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/AppRoutes";
+
+export default function PopNewCard () {
+    return (
+        <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
             <a href="#" className="pop-new-card__close">
-              ✖
+              
             </a>
             <div className="pop-new-card__wrap">
               <form
@@ -158,12 +161,14 @@ export default function PopNewCard() {
                 </div>
               </div>
             </div>
+            <Link to={AppRoutes.HOME}>
             <button className="form-new__create _hover01" id="btnCreate">
-              Создать задачу
+             Создать задачу 
             </button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
-  );
+    )
 }

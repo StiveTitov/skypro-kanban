@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { hover01 } from "../common/Common.styled";
+import { hover01 } from "../../components/common/Common.styled";
 import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExitDiv = styled.div`
-  display: none;
+  display: block;
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -54,7 +54,7 @@ export const PopExitFormGroup = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   @media screen and (max-width: ${breakpoints.sm}px) {
     display: block;
   }
