@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
+
+
 import {
   CardTheme,
   ThemeP,
@@ -17,6 +19,8 @@ import {
 } from "./Cards.styled";
 
 export default function CardsItem({ topic, title, date }) {
+  
+  
   let color;
   switch (topic) {
     case "Web Design":
