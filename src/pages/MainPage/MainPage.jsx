@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import "../../../src/App.css";
 import { cardList } from "../../data";
 
-import { getTask } from "../../lib/API";
+import { getCardsFromAPI } from "../../lib/API";
 
 import Wrapper from "../../components/warpper/Wrapper";
 
@@ -19,9 +19,9 @@ import Main from "../../components/main/Main";
 import { GlobalStyle } from "../../components/common/Common.styled";
 
 function MainPage() {
-  getTask().then((tasks)=> console.log(tasks)); // Делаю запрос для проверки работы с API
+  // Делаю запрос для проверки работы с API
 
-  const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
+  const [cards, setCards] = useState(); // список карточек из запроса (getCardsFromAPI) помещаем в переменную cards,
   // это нужно для работы хука
 
   //const [theme, setTheme] = useState("light"); // Состояние для переключения тем
@@ -32,6 +32,10 @@ function MainPage() {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000); // 2 секунды задержки
+    getCardsFromAPI().then((tasks) => {
+      console.log(tasks.tasks);
+      setCards(tasks.tasks);// Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
+        });
   }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   // Функция для переключения темы
@@ -43,25 +47,11 @@ function MainPage() {
   //}
   //};
 
-  function addCard() {
-    // Логика добавления карточки
-    const newCard = {
-      id: cards.length + 1, // id новой карточки получается прибавлением единицы к длине массива
-      theme: "Research",
-      color: "green",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-
-    setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку, обязательно с помощью spread
-  }
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <Header addCard={addCard} />
+        <Header />
         {isLoading ? (
           <div className="loading"> Данные загружаются...</div>
         ) : (

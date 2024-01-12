@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/AppRoutes";
+
 import {
   CardTheme,
   ThemeP,
@@ -13,11 +15,10 @@ import {
   CardTitle,
   CardP,
 } from "./Cards.styled";
-import { AppRoutes } from "../../lib/AppRoutes";
 
-export default function CardsItem({ theme, title, date }) {
+export default function CardsItem({ topic, title, date }) {
   let color;
-  switch (theme) {
+  switch (topic) {
     case "Web Design":
       color = "_orange";
       break;
@@ -35,16 +36,16 @@ export default function CardsItem({ theme, title, date }) {
       <CardsCard>
         <CardGroup>
           <CardTheme $themeColor={color}>
-            <ThemeP>{theme}</ThemeP>
+            <ThemeP>{topic}</ThemeP>
           </CardTheme>
-<Link to={AppRoutes.CARD}>
-          <CardA>
-            <CardBtn>
-              <CardBtnDiv />
-              <CardBtnDiv />
-              <CardBtnDiv />
-            </CardBtn>
-          </CardA>
+          <Link to={AppRoutes.CARD}>
+            <CardA>
+              <CardBtn>
+                <CardBtnDiv />
+                <CardBtnDiv />
+                <CardBtnDiv />
+              </CardBtn>
+            </CardA>
           </Link>
         </CardGroup>
         <CardContent>
