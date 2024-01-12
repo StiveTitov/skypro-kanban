@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 import "../../../src/App.css";
 import { cardList } from "../../data";
 
+import { getTask } from "../../lib/API";
+
 import Wrapper from "../../components/warpper/Wrapper";
 
 import PopNewCard from "../CardPage/CardPage";
@@ -16,8 +18,9 @@ import Main from "../../components/main/Main";
 
 import { GlobalStyle } from "../../components/common/Common.styled";
 
-
 function MainPage() {
+  getTask().then((tasks)=> console.log(tasks)); // Делаю запрос для проверки работы с API
+
   const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
   // это нужно для работы хука
 
@@ -50,6 +53,7 @@ function MainPage() {
       date: "30.10.23",
       status: "Без статуса",
     };
+
     setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку, обязательно с помощью spread
   }
 
@@ -57,13 +61,12 @@ function MainPage() {
     <>
       <GlobalStyle />
       <Wrapper>
-      
-          <Header addCard={addCard} />
-          {isLoading ? (
-            <div className="loading"> Данные загружаются...</div>
-          ) : (
-            <Main cards={cards} />
-          )}
+        <Header addCard={addCard} />
+        {isLoading ? (
+          <div className="loading"> Данные загружаются...</div>
+        ) : (
+          <Main cards={cards} />
+        )}
         <Outlet />
       </Wrapper>
     </>
