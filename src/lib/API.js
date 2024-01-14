@@ -29,12 +29,15 @@ export async function login({ login, password }) {
       password,
     }),
   });
+  if (response.status === 400) {
+    alert("Неправильный логин или пароль");
+    throw new Error("Неправильный логин или пароль");
+  }
   const data = await response.json();
   return data;
 }
 
 export async function regisreation({ login, name, password }) {
-  
   const response = await fetch(`${URL_API}user`, {
     method: "POST",
     body: JSON.stringify({
@@ -42,15 +45,11 @@ export async function regisreation({ login, name, password }) {
       name,
       password,
     }),
-  }).then((response) => {
-    console.log(response);
-    if (response.status === 400) {
-      throw new Error("Пользователь с таким логином уже сущетсвует");
-    } else {
-      console.log(response);
-      return response.json();
-    }
   });
+  if (response.status === 400) {
+    alert("Пользователь с таким логином уже сущетсвует");
+    throw new Error("Пользователь с таким логином уже сущетсвует");
+  }
   const data = await response.json();
   return data;
 }

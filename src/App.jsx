@@ -19,8 +19,8 @@ import { useState } from "react";
 function App() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null); // Где-то косяк, если передать JSON.parse(localStorage.getItem("user")), если передать null, ошибка уходит
-
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  
   async function setAuth(loginData) {
     await login(loginData).then((data) => {
       localStorage.setItem("user", JSON.stringify(data.user)); // Сохраняем в локальное хранилище данные, которые пришли с сервера
