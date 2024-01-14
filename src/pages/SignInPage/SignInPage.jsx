@@ -2,8 +2,27 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
 import "../../../css/signin.css";
+import { useState } from "react";
 
-export default function SignIn() {
+export default function SignIn({ setAuth }) {
+  const [loginData, setLoginData] = useState({
+    login: "",
+    password: "",
+  });
+  function onLoginChange(event) {
+    //Следит за состоянием поля ввода логина
+    setLoginData({
+      ...loginData,
+      login: event.target.value,
+    });
+  }
+  function onPasswordChange(event) {
+    //Следит за состоянием поля ввода пароля
+    setLoginData({
+      ...loginData,
+      password: event.target.value,
+    });
+  }
   return (
     <div className="wrapper">
       <div className="container-signin">
@@ -18,7 +37,9 @@ export default function SignIn() {
                 type="text"
                 name="login"
                 id="formlogin"
-                placeholder="Эл. почта"
+                placeholder="Логин"
+                value={loginData.login}
+                onChange={onLoginChange}
               />
               <input
                 className="modal__input"
@@ -26,9 +47,18 @@ export default function SignIn() {
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
+                value={loginData.password}
+                onChange={onPasswordChange}
               />
-              <button className="modal__btn-enter _hover01" id="btnEnter">
-                <Link to={AppRoutes.HOME}>Войти</Link>
+              <button
+                className="modal__btn-enter _hover01"
+                id="btnEnter"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setAuth(loginData);
+                }}
+              >
+                Войти
               </button>
               <div className="modal__form-group">
                 <p>Нужно зарегистрироваться?</p>

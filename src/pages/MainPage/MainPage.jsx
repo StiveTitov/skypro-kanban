@@ -26,12 +26,11 @@ function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    
+    getCardsFromAPI().then((data) => {
+      console.log(data.tasks);
+      setCards(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
       setIsLoading(false);
-    }, 2000); // 2 секунды задержки
-    getCardsFromAPI().then((tasks) => {
-      console.log(tasks.tasks);
-      setCards(tasks.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
     });
   }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
 

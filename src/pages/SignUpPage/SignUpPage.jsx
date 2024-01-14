@@ -3,9 +3,36 @@ import { AppRoutes } from "../../lib/AppRoutes";
 
 import "../../../css/signup.css"
 
+import {useState} from "react";
 
-
-export default function SingUp() {
+export default function SingUp({ setRegistration }) {
+  
+    const [loginData, setLoginData] = useState({
+      login: "",
+      name: "",
+      password: "",
+    });
+    function onLoginChange(event) {
+      //Следит за состоянием поля ввода логина
+      setLoginData({
+        ...loginData,
+        login: event.target.value,
+      });
+    }
+    function onNameChange(event) {
+      //Следит за состоянием поля ввода логина
+      setLoginData({
+        ...loginData,
+        name: event.target.value,
+      });
+    }
+    function onPasswordChange(event) {
+      //Следит за состоянием поля ввода пароля
+      setLoginData({
+        ...loginData,
+        password: event.target.value,
+      });
+    }
   return (
     <div className="wrapper">
       <div className="container-signup">
@@ -21,13 +48,17 @@ export default function SingUp() {
                 name="first-name"
                 id="first-name"
                 placeholder="Имя"
+                value={loginData.name}
+                onChange={onNameChange}
               />
               <input
                 className="modal__input login"
                 type="text"
                 name="login"
                 id="loginReg"
-                placeholder="Эл. почта"
+                placeholder="Логин"
+                value={loginData.login}
+                onChange={onLoginChange}
               />
               <input
                 className="modal__input password-first"
@@ -35,12 +66,18 @@ export default function SingUp() {
                 name="password"
                 id="passwordFirst"
                 placeholder="Пароль"
+                value={loginData.password}
+                onChange={onPasswordChange}
               />
               <button
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setRegistration(loginData);
+                }}
               >
-                <Link to={AppRoutes.HOME}>Зарегистрироваться</Link>
+                Зарегистрироваться
               </button>
               <div className="modal__form-group">
                 <p>

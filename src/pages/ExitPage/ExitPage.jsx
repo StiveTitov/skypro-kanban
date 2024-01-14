@@ -15,7 +15,7 @@ import {
   PopExitExitButtonNoA,
 } from "./PopExit.styled";
 
-export default function ExitPage() {
+export default function ExitPage({exit}) {
   return (
     <PopExitDiv>
       <PopExitContainer>
@@ -24,7 +24,10 @@ export default function ExitPage() {
           <PopExitForm>
             <PopExitFormGroup>
               <PopExitExitButtonYes>
-                <PopExitExitButtonYesA><Link to={AppRoutes.SIGNIN}>Да, выйти</Link></PopExitExitButtonYesA>
+                <PopExitExitButtonYesA onClick={(event)=> {
+                event.preventDefault();
+                exit()
+                } }>Да, выйти</PopExitExitButtonYesA>
               </PopExitExitButtonYes>
               <PopExitExitButtonNo>
                 <PopExitExitButtonNoA><Link to={AppRoutes.HOME}>Нет, остаться</Link></PopExitExitButtonNoA>

@@ -1,5 +1,5 @@
 // Определение маршрутов
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { AppRoutes } from "./lib/AppRoutes.js";
 //
 
@@ -11,29 +11,53 @@ import ExitPage from "./pages/ExitPage/ExitPage.jsx";
 import SignIn from "./pages/SignInPage/SignInPage.jsx";
 import SignUp from "./pages/SignUpPage/SignUpPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import { login } from "./lib/API.js";
+import { regisreation } from "./lib/API.js";
 
 import { useState } from "react";
 
 function App() {
-  const [isAuth, SetIsAuth] = useState(true);
-  console.log(isAuth);
-  function exitAuth() {
-    SetIsAuth(false);
-  }
-  return (
-  <Routes>
-    <Route element={<PrivateRoute isAuth={isAuth} />}>
-      <Route path={AppRoutes.HOME} element={<MainPage />} />
-      <Route path={AppRoutes.CARD} element={<CardPage />} />
-      <Route path={AppRoutes.EXIT} element={<ExitPage exitAuth={exitAuth} />} />
-    </Route>
+  const navigate = useNavigate();
 
-    <Route path="new-card" element={<NewCard />} />
-    <Route path={AppRoutes.SIGNIN} element={<SignIn />} />
-    <Route path={AppRoutes.SIGNUP} element={<SignUp />} />
-    <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
-  </Routes>
+  const [user, setUser] = useState(null); // Где-то косяк, если передать JSON.parse(localStorage.getItem("user")), если передать null, ошибка уходит
+
+  async function setAuth(loginData) {
+    await login(loginData).then((data) => {
+      localStorage.setItem("user", JSON.stringify(data.user)); // Сохраняем в локальное хранилище данные, которые пришли с сервера
+      setUser(JSON.parse(localStorage.getItem("user"))); //Получаем данные из локального хранилища
+      navigate(AppRoutes.HOME);
+    });
+  }
+  async function setRegistration(loginData) {
+    await regisreation(loginData).then((data) => {
+      localStorage.setItem("user", JSON.stringify(data.user)); // Сохраняем в локальное хранилище данные, которые пришли с сервера
+      setUser(JSON.parse(localStorage.getItem("user"))); //Получаем данные из локального хранилища
+      navigate(AppRoutes.HOME);
+    });
+  }
+
+  function exit() {
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate(AppRoutes.SIGNIN);
+  }
+
+  return (
+    <Routes>
+      <Route element={<PrivateRoute isAuth={user} />}>
+        <Route path={AppRoutes.HOME} element={<MainPage />} />
+        <Route path={AppRoutes.CARD} element={<CardPage />} />
+        <Route path={AppRoutes.EXIT} element={<ExitPage exit={exit} />} />
+      </Route>
+
+      <Route path="new-card" element={<NewCard />} />
+      <Route path={AppRoutes.SIGNIN} element={<SignIn setAuth={setAuth} />} />
+      <Route
+        path={AppRoutes.SIGNUP}
+        element={<SignUp setRegistration={setRegistration} />}
+      />
+      <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
+    </Routes>
   );
-  
 }
 export default App;
