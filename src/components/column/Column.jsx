@@ -1,9 +1,11 @@
+import { format } from "date-fns";
+
 import CardsItem from "../cards/CardsItem";
-import {MainColumn,ColumnTitle,ColumnTitleP,Cards} from "./Column.styled";
+import { MainColumn, ColumnTitle, ColumnTitleP, Cards } from "./Column.styled";
 
 export default function Column({ title, cardList }) {
   
-
+  
   return (
     <MainColumn>
       <ColumnTitle>
@@ -12,11 +14,11 @@ export default function Column({ title, cardList }) {
       <Cards>
         {cardList.map((cardList) => (
           <CardsItem
-            key={cardList.id}
-            theme={cardList.theme}
-            color={cardList.color}
+            key={cardList._id}
+            topic={cardList.topic}
             title={cardList.title}
-            date={cardList.date}
+            date={format(new Date(cardList.date), "dd.MM.yy")} // приводим дату к нужному формату 
+            //с помошью подключенного модуля "date-fns"
           />
         ))}
       </Cards>

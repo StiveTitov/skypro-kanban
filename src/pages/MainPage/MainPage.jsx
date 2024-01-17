@@ -3,12 +3,10 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 import "../../../src/App.css";
-import { cardList } from "../../data";
+
+import { getCardsFromAPI } from "../../lib/API";
 
 import Wrapper from "../../components/warpper/Wrapper";
-
-import PopNewCard from "../CardPage/CardPage";
-import PopBrowse from "../../components/pop/PopBrowse";
 
 import Header from "../../components/header/Header";
 
@@ -16,9 +14,11 @@ import Main from "../../components/main/Main";
 
 import { GlobalStyle } from "../../components/common/Common.styled";
 
-
 function MainPage() {
-  const [cards, setCards] = useState(cardList); // список карточек из data.js помещаем в переменную cards,
+  // Делаю запрос для проверки работы с API
+
+  const [cards, setCards] = useState(); // список карточек из запроса (getCardsFromAPI)
+  // помещаем в переменную cards, строка 38
   // это нужно для работы хука
 
   //const [theme, setTheme] = useState("light"); // Состояние для переключения тем
@@ -26,9 +26,11 @@ function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    getCardsFromAPI().then((data) => {
+      console.log(data.tasks);
+      setCards(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
       setIsLoading(false);
-    }, 2000); // 2 секунды задержки
+    });
   }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   // Функция для переключения темы
@@ -40,30 +42,18 @@ function MainPage() {
   //}
   //};
 
-  function addCard() {
-    // Логика добавления карточки
-    const newCard = {
-      id: cards.length + 1, // id новой карточки получается прибавлением единицы к длине массива
-      theme: "Research",
-      color: "green",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]); // увеличиваем список карточек на одну новую карточку, обязательно с помощью spread
-  }
-
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-      
-          <Header addCard={addCard} />
-          {isLoading ? (
-            <div className="loading"> Данные загружаются...</div>
-          ) : (
-            <Main cards={cards} />
-          )}
+        <Header />
+        {isLoading ? (
+          <div className="loading">
+            <img src="/images/circle-loading-gif.gif" />
+          </div>
+        ) : (
+          <Main cards={cards} />
+        )}
         <Outlet />
       </Wrapper>
     </>

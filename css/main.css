@@ -794,7 +794,6 @@ body {
   z-index: 2;
 }
 
-
 .main {
   width: 100%;
   background-color: #eaeef6;
@@ -921,12 +920,9 @@ body {
 }
 
 .loading {
-  display: flex;
-  justify-content: start;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 18px;
-  color: #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @media screen and (max-width: 1200px) {

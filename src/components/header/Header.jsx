@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
 import { Container } from "../../components/common/Common.styled";
+
+import { userName } from "../../lib/API";
+
 import {
   StyledHeader,
   HeaderA,
@@ -44,13 +47,13 @@ export default function Header({ addCard }) {
               </HeaderBtnMainNewA>
               </Link>
             </HeaderBtnMainNew>
-            <HeaderUser onClick={toggleDropdown}>Ivan Ivanov</HeaderUser>
+            <HeaderUser onClick={toggleDropdown}>{userName}</HeaderUser>
             {isOpen && (
               <div
                 className="header__pop-user-set pop-user-set"
                 id="user-set-target"
               >
-                <p className="pop-user-set__name">Ivan Ivanov</p>
+                <p className="pop-user-set__name">{userName}</p>
                 <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
                 <div className="pop-user-set__theme">
                   <p>Темная тема</p>
