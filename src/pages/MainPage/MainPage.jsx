@@ -26,7 +26,6 @@ function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    
     getCardsFromAPI().then((data) => {
       console.log(data.tasks);
       setCards(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
@@ -49,7 +48,9 @@ function MainPage() {
       <Wrapper>
         <Header />
         {isLoading ? (
-          <div className="loading"> Данные загружаются...</div>
+          <div className="loading">
+            <img src="/images/circle-loading-gif.gif" />
+          </div>
         ) : (
           <Main cards={cards} />
         )}

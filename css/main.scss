@@ -1018,12 +1018,9 @@ body {
   }
 }
 .loading {
-  display: flex;
-  justify-content: start;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 18px;
-  color: #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 // ================== Медиа ====================================

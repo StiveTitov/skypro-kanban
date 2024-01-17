@@ -21,11 +21,13 @@ function App() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   
+  
   async function setAuth(loginData) {
     await login(loginData).then((data) => {
       localStorage.setItem("user", JSON.stringify(data.user)); // Сохраняем в локальное хранилище данные, которые пришли с сервера
       setUser(JSON.parse(localStorage.getItem("user"))); //Получаем данные из локального хранилища
       navigate(AppRoutes.HOME);
+      
     });
   }
   async function setRegistration(loginData) {
