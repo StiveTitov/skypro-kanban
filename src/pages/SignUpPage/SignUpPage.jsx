@@ -4,14 +4,24 @@ import { AppRoutes } from "../../lib/AppRoutes";
 import "../../../css/signup.css"
 
 import {useState} from "react";
+import useUser from "../../hooks/useUser";
+import { regisreation } from "../../lib/API";
 
-export default function SingUp({ setRegistration }) {
-  
+export default function SingUp() {
+  const {login}= useUser();
     const [loginData, setLoginData] = useState({
       login: "",
       name: "",
       password: "",
     });
+
+    async function setAuth(loginData) {
+      await regisreation(loginData).then((data) => {
+       login(data.user)
+       
+     });
+    }
+
     function onLoginChange(event) {
       //Следит за состоянием поля ввода логина
       setLoginData({
@@ -74,7 +84,7 @@ export default function SingUp({ setRegistration }) {
                 id="SignUpEnter"
                 onClick={(event) => {
                   event.preventDefault();
-                  setRegistration(loginData);
+                  setAuth(loginData);
                 }}
               >
                 Зарегистрироваться

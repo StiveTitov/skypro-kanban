@@ -5,10 +5,10 @@ export let userName;
 
 console.log(token);
 
-export async function getCardsFromAPI() {
-  const userData = JSON.parse(localStorage.getItem("user"));
-  token = userData.token;
-  userName = userData.name;
+export async function getCardsFromAPI({user}) {
+  // const userData = JSON.parse(localStorage.getItem("user"));
+  token = user.token;
+  userName = user.name;
   try {
     const response = await fetch(`${URL_API}kanban`, {
       headers: {
@@ -23,7 +23,7 @@ export async function getCardsFromAPI() {
   }
 }
 
-export async function login({ login, password }) {
+export async function loginAPI({ login, password }) {
   const response = await fetch(`${URL_API}user/login`, {
     method: "POST",
     body: JSON.stringify({
@@ -51,6 +51,25 @@ export async function regisreation({ login, name, password }) {
   if (response.status === 400) {
     alert("Пользователь с таким логином уже сущетсвует");
     throw new Error("Пользователь с таким логином уже сущетсвует");
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function addNewCard({ title, topic, status, description, date }) {
+  const response = await fetch(`${URL_API}user`, {
+    method: "POST",
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+  if (response.status === 400) {
+    alert("данные не в формате JSON");
+    throw new Error("данные не в формате JSON");
   }
   const data = await response.json();
   return data;

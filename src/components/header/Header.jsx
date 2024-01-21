@@ -19,7 +19,7 @@ import {
   HeaderUser,
 } from "./Header.styled";
 
-export default function Header({ addCard }) {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen((prevState) => !prevState);
@@ -41,7 +41,7 @@ export default function Header({ addCard }) {
           </HeaderLogoDark>
           <HeaderNav>
             <HeaderBtnMainNew>
-              <Link to="new-card">
+              <Link to={AppRoutes.ADD_CARD}>
               <HeaderBtnMainNewA>
                 Создать новую задачу
               </HeaderBtnMainNewA>

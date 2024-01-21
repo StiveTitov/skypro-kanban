@@ -5,4 +5,5 @@ export const AppRoutes = {
   SIGNUP: "/register",
   EXIT: "/exit",
   NOT_FOUND: "*",
+  ADD_CARD: "/add-card",
 };

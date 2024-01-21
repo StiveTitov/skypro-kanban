@@ -13,6 +13,7 @@ import Header from "../../components/header/Header";
 import Main from "../../components/main/Main";
 
 import { GlobalStyle } from "../../components/common/Common.styled";
+import useUser from "../../hooks/useUser";
 
 function MainPage() {
   // Делаю запрос для проверки работы с API
@@ -24,14 +25,15 @@ function MainPage() {
   //const [theme, setTheme] = useState("light"); // Состояние для переключения тем
 
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
-    getCardsFromAPI().then((data) => {
-      console.log(data.tasks);
+    getCardsFromAPI({user}).then((data) => {
+      
       setCards(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
       setIsLoading(false);
     });
-  }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+  }, [user]); // Пустой массив зависимостей для запуска только при монтировании компонента
 
   // Функция для переключения темы
   //const toggleTheme = () => {
