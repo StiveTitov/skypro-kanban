@@ -3,25 +3,26 @@ import { AppRoutes } from "../../lib/AppRoutes";
 import { DayPicker } from "react-day-picker";
 import { useState } from "react";
 import { addNewCard } from "../../lib/API";
+import useUser from "../../hooks/useUser";
 
 
 export default function PopNewCard() {
   const navigate = useNavigate();
   
+  const { user } = useUser();
   const [newCardData, setNewCardData] = useState({
+    token: user.token,
     title: "",
     topic: "",
-    
+    status: "",
     description: "",
-    
+    date: "",
   });
 
-  async function addCard() {
-   const cardData={
-    ...newCardData,
-   } 
-     console.log(cardData);   
-      await addNewCard();
+  async function addCard(newCardData) {
+         
+      await addNewCard(newCardData)
+      navigate(AppRoutes.HOME);
     
   }
 

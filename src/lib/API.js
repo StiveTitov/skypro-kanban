@@ -3,7 +3,7 @@ export let token;
 export let userName;
 
 
-console.log(token);
+
 
 export async function getCardsFromAPI({user}) {
   // const userData = JSON.parse(localStorage.getItem("user"));
@@ -31,6 +31,7 @@ export async function loginAPI({ login, password }) {
       password,
     }),
   });
+  
   if (response.status === 400) {
     alert("Неправильный логин или пароль");
     throw new Error("Неправильный логин или пароль");
@@ -56,9 +57,11 @@ export async function regisreation({ login, name, password }) {
   return data;
 }
 
-export async function addNewCard({ title, topic, status, description, date }) {
-  const response = await fetch(`${URL_API}user`, {
+export async function addNewCard({ token, title, topic, status, description, date }) {
+   console.log('TOKEN:', token);
+  const response = await fetch(`${URL_API}kanban`, {
     method: "POST",
+    
     body: JSON.stringify({
       title,
       topic,
@@ -66,7 +69,11 @@ export async function addNewCard({ title, topic, status, description, date }) {
       description,
       date,
     }),
+    headers: {
+      Authorization: `Bearer ${token}`,
+  },
   });
+  
   if (response.status === 400) {
     alert("данные не в формате JSON");
     throw new Error("данные не в формате JSON");
