@@ -9,11 +9,11 @@ import { TaskProvider } from "./Contexts/TaskContent.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <React.StrictMode>
-      <TaskProvider>
       <UserProvider>
-        <App />
+        <TaskProvider>
+          <App />
+        </TaskProvider>
       </UserProvider>
-      </TaskProvider>
     </React.StrictMode>
   </BrowserRouter>
 );

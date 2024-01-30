@@ -18,7 +18,7 @@ import {
   CardP,
 } from "./Cards.styled";
 
-export default function CardsItem({ topic, title, date }) {
+export default function CardsItem({ topic, title, date, id }) {
   
   
   let color;
@@ -42,7 +42,7 @@ export default function CardsItem({ topic, title, date }) {
           <CardTheme $themeColor={color}>
             <ThemeP>{topic}</ThemeP>
           </CardTheme>
-          <Link to={AppRoutes.CARD}>
+          <Link to={`/card/${id}`}>
             <CardA>
               <CardBtn>
                 <CardBtnDiv />

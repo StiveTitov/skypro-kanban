@@ -1,15 +1,22 @@
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
-import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
-
+import { format } from "date-fns";
+import Calendar from "../DayPicker/DayPicker";
+import { delCard } from "../../lib/API";
 
 export default function PopBrowse() {
-  
+  let { id } = useParams();
+
+  async function deletCard() {
+    
+    await delCard(id);
+    
+  }
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
@@ -65,67 +72,75 @@ export default function PopBrowse() {
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
                   <div className="calendar__nav">
-                    <DayPicker></DayPicker>
+                    <Calendar />
                     <div className="nav__actions">
-                    
-                  
-                  <input
-                    type="hidden"
-                    id="datepick_value"
-                    defaultValue="08.09.2023"
-                  />
-                  <div className="calendar__period">
-                    <p className="calendar__p date-end">
-                      Срок исполнения:
-                      <span className="date-control">09.09.23</span>
-                    </p>
+                      <input
+                        type="hidden"
+                        id="datepick_value"
+                        defaultValue="08.09.2023"
+                      />
+                      <div className="calendar__period">
+                        <p className="calendar__p date-end">
+                          Срок исполнения:
+                          <span className="date-control">09.09.23</span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div className="theme-down__categories theme-down">
+                  <p className="categories__p subttl">Категория</p>
+                  <div className="categories__theme _orange _active-category">
+                    <p className="_orange">Web Design</p>
+                  </div>
+                </div>
+                <div className="pop-browse__btn-browse ">
+                  <div className="btn-group">
+                    <button className="btn-browse__edit _btn-bor _hover03">
+                      <Link to={AppRoutes.HOME}>Редактировать задачу</Link>
+                    </button>
+                    <button
+                      className="btn-browse__delete _btn-bor _hover03"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        deletCard();
+                      }}
+                    >
+                      <Link to={AppRoutes.HOME}>Удалить задачу</Link>
+                    </button>
+                  </div>
+                  <button className="btn-browse__close _btn-bg _hover01">
+                    <Link to={AppRoutes.HOME}>Закрыть</Link>
+                  </button>
+                </div>
+                <div className="pop-browse__btn-edit _hide">
+                  <div className="btn-group">
+                    <button className="btn-edit__edit _btn-bg _hover01">
+                      <Link to={AppRoutes.HOME}>Сохранить</Link>
+                    </button>
+                    <button className="btn-edit__edit _btn-bor _hover03">
+                      <Link to={AppRoutes.HOME}>Отменить</Link>
+                    </button>
+                    <button
+                      className="btn-edit__delete _btn-bor _hover03"
+                      id="btnDelete"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        deletCard();
+                      }}
+                    >
+                      <Link to={AppRoutes.HOME}>Удалить задачу</Link>
+                    </button>
+                  </div>
+                  <button className="btn-edit__close _btn-bg _hover01">
+                    <Link to={AppRoutes.HOME}>Закрыть</Link>
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Редактировать задачу</Link>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-              <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                <Link to={AppRoutes.HOME}>Сохранить</Link>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                <Link to={AppRoutes.HOME}>Отменить</Link>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-              <Link to={AppRoutes.HOME}>Закрыть</Link>
-              </button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 }

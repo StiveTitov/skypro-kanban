@@ -14,7 +14,7 @@ export default function Column({ title, cardList }) {
       <Cards>
         {cardList.map((cardList) => (
           <CardsItem
-            key={cardList._id}
+            id={cardList._id}
             topic={cardList.topic}
             title={cardList.title}
             date={format(new Date(cardList.date), "dd.MM.yy")} // приводим дату к нужному формату 

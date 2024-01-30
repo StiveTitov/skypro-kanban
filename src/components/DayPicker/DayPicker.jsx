@@ -6,12 +6,13 @@ import {ru} from "date-fns/locale/ru";
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-export default function Example() {
-  const [selected, setSelected] = React.useState();
+export default function Calendar({children, selected, setSelected}) {
+  
 
-  let footer = <p>Please pick a day.</p>;
+  let footer=<div className='calendar__period'>{children}</div>;
   if (selected) {
     footer = <p>Срок исполнения: {format(selected, 'PP', {locale:ru})}.</p>;
+    
   }
   return (
     <DayPicker
@@ -22,4 +23,5 @@ export default function Example() {
       locale={ru}
     />
   );
+  
 }

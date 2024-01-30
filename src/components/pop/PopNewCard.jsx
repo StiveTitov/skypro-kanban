@@ -1,30 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
-import { DayPicker } from "react-day-picker";
+import Calendar from "../DayPicker/DayPicker";
 import { useState } from "react";
 import { addNewCard } from "../../lib/API";
-import useUser from "../../hooks/useUser";
+import MainPage from "../../pages/MainPage/MainPage";
 
+import useUser from "../../hooks/useUser";
 
 export default function PopNewCard() {
   const navigate = useNavigate();
-  
-  const { user } = useUser();
+  const [selected, setSelected] = useState(null);
+  const { Card } = useUser();
   const [newCardData, setNewCardData] = useState({
-    token: user.token,
-    title: "",
     topic: "",
-    status: "",
+
     description: "",
     date: "",
   });
-
-  async function addCard(newCardData) {
-         
-      await addNewCard(newCardData)
-      navigate(AppRoutes.HOME);
-    
-  }
 
   function onTitleNewCard(event) {
     setNewCardData({
@@ -38,6 +30,22 @@ export default function PopNewCard() {
       ...newCardData,
       description: event.target.value,
     });
+  }
+
+  function onTopicNewCard(event) {
+    setNewCardData({
+      ...newCardData,
+      topic: event.target.value,
+    });
+  }
+  async function addCard(newCardData) {
+    console.log(newCardData);
+    setNewCardData({
+      ...newCardData,
+      date: selected,
+    });
+
+    await addNewCard(newCardData);
   }
 
   return (
@@ -87,7 +95,12 @@ export default function PopNewCard() {
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
                   <div className="calendar__nav">
-                    <DayPicker></DayPicker>
+                    <Calendar selected={selected} setSelected={setSelected}>
+                      <p className="calendar__p date-end">
+                        Выберете срок исполнения{" "}
+                        <span className="date-control"></span>
+                      </p>
+                    </Calendar>
                   </div>
 
                   <input
@@ -107,7 +120,7 @@ export default function PopNewCard() {
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
+                {/*<div className="categories__theme _orange _active-category">
                   <p className="_orange">Web Design</p>
                 </div>
                 <div className="categories__theme _green">
@@ -115,9 +128,36 @@ export default function PopNewCard() {
                 </div>
                 <div className="categories__theme _purple">
                   <p className="_purple">Copywriting</p>
-                </div>
+                </div>*/}
+                <input
+                  type="radio"
+                  id="radio1"
+                  className="radios"
+                  value="Web Design"
+                  onChange={onTopicNewCard}
+                />
+                <label htmlFor="radio1">Web Design</label>
+
+                <input
+                  type="radio"
+                  id="radio2"
+                  className="radios"
+                  value="Research"
+                  onChange={onTopicNewCard}
+                />
+                <label htmlFor="radio2">Research</label>
+
+                <input
+                  type="radio"
+                  id="radio3"
+                  className="radios"
+                  value="Copywriting"
+                  onChange={onTopicNewCard}
+                />
+                <label htmlFor="radio3">Copywriting</label>
               </div>
             </div>
+
             <Link to={AppRoutes.HOME}>
               <button
                 className="form-new__create _hover01"
