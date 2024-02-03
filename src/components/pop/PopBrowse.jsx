@@ -8,14 +8,17 @@ import { useState } from "react";
 import { format } from "date-fns";
 import Calendar from "../DayPicker/DayPicker";
 import { delCard } from "../../lib/API";
+import useTasks from "../../hooks/useTask";
 
 export default function PopBrowse() {
+  const { cards, setCardsData } = useTasks();
   let { id } = useParams();
-
+  const currentCard = cards.find((cardItem) => cardItem._id === id);
+  console.log(currentCard);
   async function deletCard() {
-    
-    await delCard(id);
-    
+    await delCard(id).then((data) => {
+      setCardsData(data.tasks);
+    });
   }
   return (
     <div className="pop-browse" id="popBrowse">
@@ -23,9 +26,9 @@ export default function PopBrowse() {
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
+              <h3 className="pop-browse__ttl">{currentCard.title}</h3>
               <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{currentCard.topic}</p>
               </div>
             </div>
             <div className="pop-browse__status status">
@@ -64,7 +67,6 @@ export default function PopBrowse() {
                     id="textArea01"
                     readOnly=""
                     placeholder="Введите описание задачи..."
-                    defaultValue={""}
                   />
                 </div>
               </form>
@@ -74,11 +76,7 @@ export default function PopBrowse() {
                   <div className="calendar__nav">
                     <Calendar />
                     <div className="nav__actions">
-                      <input
-                        type="hidden"
-                        id="datepick_value"
-                        defaultValue="08.09.2023"
-                      />
+                      <input type="hidden" id="datepick_value" />
                       <div className="calendar__period">
                         <p className="calendar__p date-end">
                           Срок исполнения:
@@ -88,54 +86,54 @@ export default function PopBrowse() {
                     </div>
                   </div>
                 </div>
-                <div className="theme-down__categories theme-down">
-                  <p className="categories__p subttl">Категория</p>
-                  <div className="categories__theme _orange _active-category">
-                    <p className="_orange">Web Design</p>
-                  </div>
+              </div>
+              <div className="theme-down__categories theme-down">
+                <p className="categories__p subttl">Категория</p>
+                <div className="categories__theme _orange _active-category">
+                  <p className="_orange">Web Design</p>
                 </div>
-                <div className="pop-browse__btn-browse ">
-                  <div className="btn-group">
-                    <button className="btn-browse__edit _btn-bor _hover03">
-                      <Link to={AppRoutes.HOME}>Редактировать задачу</Link>
-                    </button>
-                    <button
-                      className="btn-browse__delete _btn-bor _hover03"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        deletCard();
-                      }}
-                    >
-                      <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                    </button>
-                  </div>
-                  <button className="btn-browse__close _btn-bg _hover01">
-                    <Link to={AppRoutes.HOME}>Закрыть</Link>
+              </div>
+              <div className="pop-browse__btn-browse ">
+                <div className="btn-group">
+                  <button className="btn-browse__edit _btn-bor _hover03">
+                    <Link to={AppRoutes.HOME}>Редактировать задачу</Link>
+                  </button>
+                  <button
+                    className="btn-browse__delete _btn-bor _hover03"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      deletCard();
+                    }}
+                  >
+                    <Link to={AppRoutes.HOME}>Удалить задачу</Link>
                   </button>
                 </div>
-                <div className="pop-browse__btn-edit _hide">
-                  <div className="btn-group">
-                    <button className="btn-edit__edit _btn-bg _hover01">
-                      <Link to={AppRoutes.HOME}>Сохранить</Link>
-                    </button>
-                    <button className="btn-edit__edit _btn-bor _hover03">
-                      <Link to={AppRoutes.HOME}>Отменить</Link>
-                    </button>
-                    <button
-                      className="btn-edit__delete _btn-bor _hover03"
-                      id="btnDelete"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        deletCard();
-                      }}
-                    >
-                      <Link to={AppRoutes.HOME}>Удалить задачу</Link>
-                    </button>
-                  </div>
-                  <button className="btn-edit__close _btn-bg _hover01">
-                    <Link to={AppRoutes.HOME}>Закрыть</Link>
+                <button className="btn-browse__close _btn-bg _hover01">
+                  <Link to={AppRoutes.HOME}>Закрыть</Link>
+                </button>
+              </div>
+              <div className="pop-browse__btn-edit _hide">
+                <div className="btn-group">
+                  <button className="btn-edit__edit _btn-bg _hover01">
+                    <Link to={AppRoutes.HOME}>Сохранить</Link>
+                  </button>
+                  <button className="btn-edit__edit _btn-bor _hover03">
+                    <Link to={AppRoutes.HOME}>Отменить</Link>
+                  </button>
+                  <button
+                    className="btn-edit__delete _btn-bor _hover03"
+                    id="btnDelete"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      deletCard();
+                    }}
+                  >
+                    <Link to={AppRoutes.HOME}>Удалить задачу</Link>
                   </button>
                 </div>
+                <button className="btn-edit__close _btn-bg _hover01">
+                  <Link to={AppRoutes.HOME}>Закрыть</Link>
+                </button>
               </div>
             </div>
           </div>

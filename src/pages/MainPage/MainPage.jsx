@@ -15,23 +15,22 @@ import Main from "../../components/main/Main";
 import { GlobalStyle } from "../../components/common/Common.styled";
 import useUser from "../../hooks/useUser";
 import PopBrowse from "../../components/pop/PopBrowse";
+import useTasks from "../../hooks/useTask";
 
 function MainPage() {
   // Делаю запрос для проверки работы с API
 
-  const [cards, setCards] = useState(); // список карточек из запроса (getCardsFromAPI)
-  // помещаем в переменную cards, строка 38
-  // это нужно для работы хука
-
+  
   //const [theme, setTheme] = useState("light"); // Состояние для переключения тем
 
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
+  const { setCardsData } = useTasks();
 
   useEffect(() => {
     getCardsFromAPI({user}).then((data) => {
       
-      setCards(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
+      setCardsData(data.tasks); // Полученый массив из tasks передаем в фунуцию setCards для дальнейшего вывода
       
       setIsLoading(false);
     });
@@ -56,7 +55,7 @@ function MainPage() {
             <img src="/images/circle-loading-gif.gif" />
           </div>
         ) : (
-          <Main cards={cards} />
+          <Main />
         )}
         <Outlet />
       </Wrapper>

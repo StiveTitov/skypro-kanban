@@ -11,7 +11,7 @@ export default function Calendar({children, selected, setSelected}) {
 
   let footer=<div className='calendar__period'>{children}</div>;
   if (selected) {
-    footer = <p>Срок исполнения: {format(selected, 'PP', {locale:ru})}.</p>;
+    footer = <p>Выберете срок исполнения {format(selected, 'PP', {locale:ru})}.</p>;
     
   }
   return (

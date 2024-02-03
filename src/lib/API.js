@@ -72,10 +72,7 @@ export async function addNewCard({ title, topic, description, date }) {
     },
   });
 
-  if (response.status === 400) {
-    alert("данные не в формате JSON");
-    throw new Error("данные не в формате JSON");
-  }
+  
   const data = await response.json();
   return data;
 }
@@ -91,4 +88,6 @@ export async function delCard(id) {
     },
   });
   console.log(`Del card: ${id}`);
+  const data = await response.json();
+  return data;
 }

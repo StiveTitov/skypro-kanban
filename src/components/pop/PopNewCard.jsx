@@ -3,20 +3,22 @@ import { AppRoutes } from "../../lib/AppRoutes";
 import Calendar from "../DayPicker/DayPicker";
 import { useState } from "react";
 import { addNewCard } from "../../lib/API";
-import MainPage from "../../pages/MainPage/MainPage";
-
-import useUser from "../../hooks/useUser";
+import useTasks from "../../hooks/useTask";
 
 export default function PopNewCard() {
-  const navigate = useNavigate();
-  const [selected, setSelected] = useState(null);
-  const { Card } = useUser();
+  const { setCardsData } = useTasks();
+
+  const [selected, setSelected] = useState(new Date());
+
   const [newCardData, setNewCardData] = useState({
     topic: "",
-
+    title: "",
     description: "",
-    date: "",
   });
+
+  
+
+  
 
   function onTitleNewCard(event) {
     setNewCardData({
@@ -33,19 +35,31 @@ export default function PopNewCard() {
   }
 
   function onTopicNewCard(event) {
+    event.target.value
     setNewCardData({
       ...newCardData,
       topic: event.target.value,
     });
   }
-  async function addCard(newCardData) {
-    console.log(newCardData);
-    setNewCardData({
+  async function addCard() {
+    const cardData = {
       ...newCardData,
       date: selected,
-    });
-
-    await addNewCard(newCardData);
+    };
+    console.log(cardData);
+    if (
+      cardData.title === "" ||
+      cardData.topic === "" ||
+      cardData.description === ""
+    ) {
+      alert("Вы не заполнили все поля и не выбрали категорию");
+      return;
+    } else {
+      // Обработать ошибку 400!!! Вывести алерт Заполните все поля
+      await addNewCard(cardData).then((data) => {
+        setCardsData(data.tasks);
+      });
+    }
   }
 
   return (
@@ -85,7 +99,6 @@ export default function PopNewCard() {
                     name="text"
                     id="textArea"
                     placeholder="Введите описание задачи..."
-                    defaultValue={""}
                     value={newCardData.description}
                     onChange={onDescriptionNewCard}
                   />
@@ -97,22 +110,16 @@ export default function PopNewCard() {
                   <div className="calendar__nav">
                     <Calendar selected={selected} setSelected={setSelected}>
                       <p className="calendar__p date-end">
-                        Выберете срок исполнения{" "}
                         <span className="date-control"></span>
                       </p>
                     </Calendar>
                   </div>
 
-                  <input
-                    type="hidden"
-                    id="datepick_value"
-                    defaultValue="08.09.2023"
-                  />
+                  <input type="hidden" id="datepick_value" />
                   <div className="calendar__period">
-                    <p className="calendar__p date-end">
+                    {/* <p className="calendar__p date-end">
                       Выберите срок исполнения <span className="date-control" />
-                      .
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
@@ -129,32 +136,40 @@ export default function PopNewCard() {
                 <div className="categories__theme _purple">
                   <p className="_purple">Copywriting</p>
                 </div>*/}
-                <input
-                  type="radio"
-                  id="radio1"
-                  className="radios"
-                  value="Web Design"
-                  onChange={onTopicNewCard}
-                />
-                <label htmlFor="radio1">Web Design</label>
+                <div class="prod_checbox">
+                  <div class="radio-toolbar">
+                    <input
+                      type="radio"
+                      id="radio1"
+                      className="radios"
+                      value="Web Design"
+                      checked={newCardData.topic == 'Web Design' ? true : false}
+                      onChange={onTopicNewCard}
+                      
+                    />
+                    <label htmlFor="radio1">Web Design</label>
 
-                <input
-                  type="radio"
-                  id="radio2"
-                  className="radios"
-                  value="Research"
-                  onChange={onTopicNewCard}
-                />
-                <label htmlFor="radio2">Research</label>
+                    <input
+                      type="radio"
+                      id="radio2"
+                      className="radios"
+                      value="Research"
+                      checked={newCardData.topic == 'Research' ? true : false}
+                      onChange={onTopicNewCard}
+                    />
+                    <label htmlFor="radio2">Research</label>
 
-                <input
-                  type="radio"
-                  id="radio3"
-                  className="radios"
-                  value="Copywriting"
-                  onChange={onTopicNewCard}
-                />
-                <label htmlFor="radio3">Copywriting</label>
+                    <input
+                      type="radio"
+                      id="radio3"
+                      className="radios"
+                      value="Copywriting"
+                      checked={newCardData.topic == 'Copywriting' ? true : false}
+                      onChange={onTopicNewCard}
+                    />
+                    <label htmlFor="radio3">Copywriting</label>
+                  </div>
+                </div>
               </div>
             </div>
 
