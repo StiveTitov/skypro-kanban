@@ -9,12 +9,29 @@ import { format } from "date-fns";
 import Calendar from "../DayPicker/DayPicker";
 import { delCard } from "../../lib/API";
 import useTasks from "../../hooks/useTask";
+import { CategoriesTheme, CategoriesThemeP } from "./PopBrowse.styled";
+
 
 export default function PopBrowse() {
   const { cards, setCardsData } = useTasks();
   let { id } = useParams();
   const currentCard = cards.find((cardItem) => cardItem._id === id);
   console.log(currentCard);
+  let color;
+  switch (currentCard.topic) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
+  console.log(color);
   async function deletCard() {
     await delCard(id).then((data) => {
       setCardsData(data.tasks);
@@ -27,9 +44,9 @@ export default function PopBrowse() {
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
               <h3 className="pop-browse__ttl">{currentCard.title}</h3>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{currentCard.topic}</p>
-              </div>
+              <CategoriesTheme $themeColor={color}>
+                <CategoriesThemeP>{currentCard.topic}</CategoriesThemeP>
+              </CategoriesTheme>
             </div>
             <div className="pop-browse__status status">
               <p className="status__p subttl">Статус</p>
@@ -80,7 +97,9 @@ export default function PopBrowse() {
                       <div className="calendar__period">
                         <p className="calendar__p date-end">
                           Срок исполнения:
-                          <span className="date-control">{format(new Date(currentCard.date), "dd.MM.yy")}</span>
+                          <span className="date-control">
+                            {format(new Date(currentCard.date), "dd.MM.yy")}
+                          </span>
                         </p>
                       </div>
                     </div>
