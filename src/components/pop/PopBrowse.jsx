@@ -66,7 +66,7 @@ export default function PopBrowse() {
                     name="text"
                     id="textArea01"
                     readOnly=""
-                    placeholder="Введите описание задачи..."
+                    placeholder={currentCard.description}
                   />
                 </div>
               </form>
@@ -80,7 +80,7 @@ export default function PopBrowse() {
                       <div className="calendar__period">
                         <p className="calendar__p date-end">
                           Срок исполнения:
-                          <span className="date-control">09.09.23</span>
+                          <span className="date-control">{format(new Date(currentCard.date), "dd.MM.yy")}</span>
                         </p>
                       </div>
                     </div>
