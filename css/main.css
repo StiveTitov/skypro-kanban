@@ -403,7 +403,7 @@ body {
 }
 
 .calendar {
-  width: 182px;
+  width: 160px;
   margin-bottom: 20px;
 }
 .calendar__ttl {
@@ -471,6 +471,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   margin-top: 14px;
   padding: 0 7px;
 }
@@ -604,6 +605,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .pop-browse__form {
   max-width: 370px;
@@ -971,7 +973,7 @@ body {
     display: block;
   }
   .calendar {
-    max-width: 340px;
+    max-width: 309px;
     width: 100%;
   }
   .calendar__ttl, .calendar__nav, .calendar__period {
@@ -1102,4 +1104,90 @@ body {
   .pop-exit__form-group {
     display: block;
   }
+}
+.prod_checbox strong {
+  font-size: 14px;
+  color: #333;
+  display: inline-block;
+  margin-right: 10px;
+  letter-spacing: 0.5px;
+}
+
+.radio-toolbar input[type=radio] {
+  display: none;
+}
+
+.radio-toolbar input[id=radio1] + label {
+  display: inline-block;
+  width: auto;
+  height: 23px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+  background-color: #ffe4c2;
+  color: rgba(255, 109, 0, 0.5);
+  cursor: pointer;
+  border: 1px solid #dad0ff;
+}
+
+.radio-toolbar input[id=radio2] + label {
+  display: inline-block;
+  width: auto;
+  height: 23px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+  background-color: #b4fdd1;
+  color: rgba(6, 177, 110, 0.5);
+  cursor: pointer;
+  border: 1px solid #dad0ff;
+}
+
+.radio-toolbar input[id=radio3] + label {
+  display: inline-block;
+  width: auto;
+  height: 23px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+  background-color: #e9d4ff;
+  color: rgba(154, 72, 241, 0.5);
+  cursor: pointer;
+  border: 1px solid #dad0ff;
+}
+
+.radio-toolbar input[id=radio1]:checked + label {
+  background-color: #ffe4c2;
+  color: #ff6d00;
+}
+
+.radio-toolbar input[id=radio2]:checked + label {
+  background-color: #b4fdd1;
+  color: #06b16e;
+}
+
+.radio-toolbar input[id=radio3]:checked + label {
+  background-color: #e9d4ff;
+  color: #9a48f1;
+}
+
+.radio-toolbar input[id=radio1] + label:hover {
+  background-color: #ffe4c2;
+  color: #ff6d00;
+}
+
+.radio-toolbar input[id=radio2] + label:hover {
+  background-color: #b4fdd1;
+  color: #06b16e;
+}
+
+.radio-toolbar input[id=radio3] + label:hover {
+  background-color: #e9d4ff;
+  color: #9a48f1;
 }/*# sourceMappingURL=main.css.map */

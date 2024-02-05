@@ -14,8 +14,10 @@ import {
   PopExitExitButtonNo,
   PopExitExitButtonNoA,
 } from "./PopExit.styled";
+import useUser from "../../hooks/useUser";
 
-export default function ExitPage({exit}) {
+export default function ExitPage() {
+  const {exit} = useUser();
   return (
     <PopExitDiv>
       <PopExitContainer>

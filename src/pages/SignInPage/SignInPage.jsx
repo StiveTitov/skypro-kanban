@@ -3,12 +3,23 @@ import { AppRoutes } from "../../lib/AppRoutes";
 
 import "../../../css/signin.css";
 import { useState } from "react";
+import { loginAPI } from "../../lib/API";
+import useUser from "../../hooks/useUser";
 
-export default function SignIn({ setAuth }) {
+export default function SignIn() {
+  const {login}= useUser();
   const [loginData, setLoginData] = useState({
     login: "",
     password: "",
   });
+
+  async function setAuth(loginData) {
+       await loginAPI(loginData).then((data) => {
+        login(data.user)
+        
+      });
+     }
+
   function onLoginChange(event) {
     //Следит за состоянием поля ввода логина
     setLoginData({

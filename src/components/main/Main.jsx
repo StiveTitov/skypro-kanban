@@ -2,8 +2,10 @@ import { Container } from "../common/Common.styled";
 import { MainStyled, MainBlock, MainContent } from "./Main.styled";
 import { statusList } from "../../data"; //получаем название колонок из файла
 import Column from "../column/Column";
+import useTasks from "../../hooks/useTask";
 
-export default function Main({ cards }) {
+export default function Main() {
+  const { cards } = useTasks();
   return (
     <MainStyled>
       <Container>
