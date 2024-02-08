@@ -72,7 +72,6 @@ export async function addNewCard({ title, topic, description, date }) {
     },
   });
 
-  
   const data = await response.json();
   return data;
 }
@@ -88,6 +87,27 @@ export async function delCard(id) {
     },
   });
   console.log(`Del card: ${id}`);
+  const data = await response.json();
+  return data;
+}
+
+export async function changeCard(cardData, id) {
+  token = JSON.parse(localStorage.getItem("user")).token;
+  console.log(`ID: ${id}`);
+  const response = await fetch(`${URL_API}kanban/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      title: cardData.title,
+      topic: cardData.topic,
+      status: cardData.status,
+      description: cardData.description,
+      date: cardData.date,
+    }),
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(`Change card: ${id}`);
   const data = await response.json();
   return data;
 }
