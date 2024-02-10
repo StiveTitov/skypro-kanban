@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { themeStyles } from "../../lib/theme";
 import { breakpoints } from "../../lib/breakpoints";
 
-export const CardA = styled.a``;
+export const CardA = styled.div``;
 
 export const CardBtn = styled.div`
   width: 24px;

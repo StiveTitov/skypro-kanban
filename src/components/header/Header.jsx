@@ -42,9 +42,7 @@ export default function Header() {
           <HeaderNav>
             <HeaderBtnMainNew>
               <Link to={AppRoutes.ADD_CARD}>
-              <HeaderBtnMainNewA>
-                Создать новую задачу
-              </HeaderBtnMainNewA>
+                <HeaderBtnMainNewA>Создать новую задачу</HeaderBtnMainNewA>
               </Link>
             </HeaderBtnMainNew>
             <HeaderUser onClick={toggleDropdown}>{userName}</HeaderUser>
@@ -54,11 +52,7 @@ export default function Header() {
                 id="user-set-target"
               >
                 <p className="pop-user-set__name">{userName}</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                <div className="pop-user-set__theme">
-                  <p>Темная тема</p>
-                  <input type="checkbox" className="checkbox" name="checkbox" />
-                </div>
+
                 <button type="button" className="_hover03">
                   <Link to={AppRoutes.EXIT}>Выйти</Link>
                 </button>
