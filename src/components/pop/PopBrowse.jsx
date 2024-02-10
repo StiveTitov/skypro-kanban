@@ -17,7 +17,6 @@ export default function PopBrowse() {
   let { id } = useParams();
   const currentCard = cards.find((cardItem) => cardItem._id === id);
 
-  
   const [selected, setSelected] = useState(currentCard.data);
   const [CardData, setCardData] = useState({
     topic: currentCard.topic,
@@ -41,7 +40,7 @@ export default function PopBrowse() {
     default:
       color = "_gray";
   }
-  
+
   async function deletCard() {
     await delCard(id).then((data) => {
       setCardsData(data.tasks);
@@ -111,7 +110,6 @@ export default function PopBrowse() {
               <div className="pop-browse__status status">
                 <p className="status__p subttl">Статус</p>
                 <div className="radio-themes">
-                  
                   <input
                     type="radio"
                     id="radio1"
@@ -230,9 +228,7 @@ export default function PopBrowse() {
                         <div className="calendar__period">
                           <p className="calendar__p date-end">
                             Срок исполнения:
-                            <span className="date-control">
-                              {format(new Date(currentCard.date), "dd.MM.yy")}
-                            </span>
+                            {format(new Date(currentCard.date), "dd.MM.yy")}
                           </p>
                         </div>
                       </div>
@@ -245,9 +241,9 @@ export default function PopBrowse() {
                         <div className="calendar__period">
                           <p className="calendar__p date-end">
                             Срок исполнения:
-                            <span className="date-control">
+                            
                               {format(new Date(currentCard.date), "dd.MM.yy")}
-                            </span>
+                            
                           </p>
                         </div>
                       </div>
@@ -305,7 +301,6 @@ export default function PopBrowse() {
                       onClick={(event) => {
                         event.preventDefault();
                         setButton(true);
-                        
                       }}
                     >
                       Отменить

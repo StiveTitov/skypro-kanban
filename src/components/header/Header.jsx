@@ -17,6 +17,7 @@ import {
   HeaderBtnMainNew,
   HeaderBtnMainNewA,
   HeaderUser,
+  Img,
 } from "./Header.styled";
 
 export default function Header() {
@@ -31,7 +32,7 @@ export default function Header() {
         <HeaderBlock>
           <HeaderLogoShowLight>
             <HeaderA>
-              <img src="/images/logo.png" alt="logo" />
+              <Img src="/images/logo.png" alt="logo" />
             </HeaderA>
           </HeaderLogoShowLight>
           <HeaderLogoDark>
