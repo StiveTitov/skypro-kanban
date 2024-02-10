@@ -1113,6 +1113,11 @@ body {
   letter-spacing: 0.5px;
 }
 
+.radio-toolbar {
+  display: flex;
+  gap: 5px;
+}
+
 .radio-toolbar input[type=radio] {
   display: none;
 }

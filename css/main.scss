@@ -1272,16 +1272,24 @@ body {
   }
 }
 
-.prod_checbox strong {
-  font-size: 14px;
-  color: #333;
-  display: inline-block;
-  margin-right: 10px;
-  letter-spacing: 0.5px;
-}
+
+
+ .prod_checbox strong {
+   font-size: 14px;
+   color: #333;
+   display: inline-block;
+   margin-right: 10px;
+   letter-spacing: 0.5px;
+ }
+
+ .radio-toolbar {
+  display: flex;
+  gap: 5px;
+ }
 
 .radio-toolbar input[type="radio"] {
   display: none;
+  
 }
 
 .radio-toolbar input[id="radio1"] + label {
