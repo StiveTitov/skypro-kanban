@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { format } from "date-fns";
 import Calendar from "../DayPicker/DayPicker";
-import { changeCard, delCard } from "../../lib/API";
+import { changeCard, delCard } from "../../API";
 import useTasks from "../../hooks/useTask";
 import { CategoriesTheme, CategoriesThemeP } from "./PopBrowse.styled";
 

@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/AppRoutes";
 import Calendar from "../DayPicker/DayPicker";
 import { useState } from "react";
-import { addNewCard } from "../../lib/API";
+
 import useTasks from "../../hooks/useTask";
+import { addNewCard } from "../../API";
 
 export default function PopNewCard() {
   const { setCardsData } = useTasks();

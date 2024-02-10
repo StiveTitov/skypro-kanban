@@ -13,11 +13,6 @@ export function UserProvider({ children }) {
     setUser(JSON.parse(localStorage.getItem("user"))); //Получаем данные из локального хранилища
     navigate(AppRoutes.HOME);
   }
-  async function Card(user) {
-    localStorage.setItem("user", JSON.stringify(user)); // Сохраняем в локальное хранилище данные, которые пришли с сервера
-    setUser(JSON.parse(localStorage.getItem("user"))); //Получаем данные из локального хранилища
-    navigate(AppRoutes.HOME);
-  }
 
   function exit() {
     localStorage.removeItem("user");
@@ -25,7 +20,7 @@ export function UserProvider({ children }) {
     navigate(AppRoutes.SIGNIN);
   }
   return (
-    <UserContext.Provider value={{ user, login, exit, Card }}>
+    <UserContext.Provider value={{ user, login, exit }}>
       {children}
     </UserContext.Provider>
   );

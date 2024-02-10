@@ -5,7 +5,7 @@ import { AppRoutes } from "../../lib/AppRoutes";
 
 import { Container } from "../../components/common/Common.styled";
 
-import { userName } from "../../lib/API";
+import { userName } from "../../API";
 
 import {
   StyledHeader,
