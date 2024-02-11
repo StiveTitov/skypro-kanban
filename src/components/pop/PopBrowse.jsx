@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import Calendar from "../DayPicker/DayPicker";
 import { changeCard, delCard } from "../../API";
 import useTasks from "../../hooks/useTask";
-import { CategoriesTheme, CategoriesThemeP } from "./PopBrowse.styled";
+import { CategoriesTheme, CategoriesThemeP, PopBrowseBlock } from "./PopBrowse.styled";
 
 export default function PopBrowse() {
   const [click, setButton] = useState(true);
@@ -98,7 +98,7 @@ export default function PopBrowse() {
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
-        <div className="pop-browse__block">
+        <PopBrowseBlock>
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
               <h3 className="pop-browse__ttl">{currentCard.title}</h3>
@@ -331,7 +331,7 @@ export default function PopBrowse() {
               )}
             </div>
           </div>
-        </div>
+        </PopBrowseBlock>
       </div>
     </div>
   );
