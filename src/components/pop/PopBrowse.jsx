@@ -47,6 +47,15 @@ export default function PopBrowse() {
     });
   }
 
+  const returnCardData = () => {
+    setButton(true);
+    console.log(click);
+    console.log(currentCard);
+    CardData.description = currentCard.description;
+    CardData.status = currentCard.status;
+    CardData.date = currentCard.date;
+  };
+
   function onDescriptionCard(event) {
     setCardData({
       ...CardData,
@@ -196,7 +205,7 @@ export default function PopBrowse() {
                       className="form-browse__area"
                       name="text"
                       id="textArea01"
-                      readOnly=""
+                      readOnly="on"
                       placeholder={currentCard.description}
                     />
                   </div>
@@ -209,7 +218,6 @@ export default function PopBrowse() {
                       className="form-browse__area"
                       name="text"
                       id="textArea01"
-                      autoFocus=""
                       defaultValue={currentCard.description}
                       value={CardData.description}
                       onChange={onDescriptionCard}
@@ -241,9 +249,7 @@ export default function PopBrowse() {
                         <div className="calendar__period">
                           <p className="calendar__p date-end">
                             Срок исполнения:
-                            
-                              {format(new Date(currentCard.date), "dd.MM.yy")}
-                            
+                            {format(new Date(currentCard.date), "dd.MM.yy")}
                           </p>
                         </div>
                       </div>
@@ -300,10 +306,11 @@ export default function PopBrowse() {
                       className="btn-edit__edit _btn-bor _hover03"
                       onClick={(event) => {
                         event.preventDefault();
-                        setButton(true);
+
+                        returnCardData();
                       }}
                     >
-                      Отменить
+                      <Link to={`/card/${id}`}>Отменить</Link>
                     </button>
 
                     <button
