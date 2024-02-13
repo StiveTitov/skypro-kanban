@@ -5,7 +5,8 @@ import "../../../css/signup.css"
 
 import {useState} from "react";
 import useUser from "../../hooks/useUser";
-import { regisreation } from "../../lib/API";
+import { regisreation } from "../../API";
+
 
 export default function SingUp() {
   const {login}= useUser();

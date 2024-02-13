@@ -6,7 +6,9 @@ export const StyledHeader = styled.header`
   margin: 0 auto;
   background-color: #ffffff;
 `;
-
+export const Img = styled.img `
+width: 85px
+`;
 export const HeaderBlock = styled.div`
   height: 70px;
   display: flex;
